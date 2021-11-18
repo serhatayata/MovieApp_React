@@ -2,10 +2,6 @@ import React from 'react'
 
 const MovieList = (props) => {
 
-    /* function handleClick(e){
-        props.deleteMovieProp(e)
-    } */
-
     return (
         <div className="row">
             {
@@ -20,9 +16,9 @@ const MovieList = (props) => {
                                 <h5 className="card-title">
                                     {movie.name}
                                 </h5>
-                                <p className="card-text">{movie.overview}</p>
+                                <p className="card-text" style={{ height: 200, overflow: 'hidden' }}>{movie.overview}</p>
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <button onClick={(e) => {props.deleteMovieProp(movie)}} type="button" className="btn btn-outline-primary">
+                                    <button onClick={(e) => { props.deleteMovieProp(movie) }} type="button" className="btn btn-outline-primary">
                                         Delete
                                     </button>
                                     <h2>
@@ -38,5 +34,6 @@ const MovieList = (props) => {
                 ))
             }
         </div>
-    )}
+    )
+}
 export default MovieList

@@ -2,8 +2,6 @@ import React from 'react'
 
 class SearchBar extends React.Component {
 
-  
-
   handleFormSubmit = (event) => {
     event.preventDefault();
   }
