@@ -7,7 +7,6 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
   } from "react-router-dom";class App extends React.Component {
 
     state = {
@@ -20,7 +19,7 @@ import {
         this.setState({ movies: response.data })
     }
 
-    //AXIOS API
+    //DELETE MOVIE
     deleteMovie = async (movie) => {
         axios.delete(`http://localhost:3002/movies/${movie.id}`)
 
@@ -31,11 +30,18 @@ import {
             movies: newMovieList
         }))
     }
-
+    //SEARCH MOVIE
     searchMovie = (event) => {
         this.setState({
             searchQuery: event.target.value
         })
+    }
+   //ADD MOVIE
+    addMovie = async (movie) => {
+        await axios.post(`http://localhost:3002/movies/`,movie)
+        this.setState(state => ({
+            movies:state.movies.concat([movie])
+        }))
     }
 
     render() {
@@ -59,18 +65,22 @@ import {
                                         </div>
                                     </div>
 
-
                                     <MovieList
                                         movies={filteredMovies}
                                         deleteMovieProp={this.deleteMovie}
-
                                     />
                                 </React.Fragment>
                             )}>
-
+                            </Route>
+                            <Route path="/add"  render={({history}) => (
+                                <AddMovie 
+                                onAddMovie = {(movie) => {this.addMovie(movie);
+                                    history.push("/");
+                                }
+                            } />
+                            )}>
                             </Route>
 
-                            <Route path="/add" component={AddMovie} />
                         </Switch>
                     </div>
 
