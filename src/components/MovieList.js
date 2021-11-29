@@ -1,16 +1,16 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const MovieList = (props) => {
 
-    const truncateOverview = (string,maxLength) => {
+    const truncateOverview = (string, maxLength) => {
         if (!string) {
             return null
         }
-        if (string.length <= maxLength ) {
+        if (string.length <= maxLength) {
             return string
         }
-        return `${string.substring(0,maxLength)} ...`
+        return `${string.substring(0, maxLength)} ...`
     }
 
     return (
@@ -27,15 +27,15 @@ const MovieList = (props) => {
                                 <h5 className="card-title">
                                     {movie.name}
                                 </h5>
-                                <p className="card-text" style={{ minHeight: 200, overflow: 'hidden' }}>{truncateOverview(movie.overview,300)}</p>
-                                <div className="d-flex justify-content-between align-items-center">
+                                <p className="card-text" style={{ minHeight: 200, overflow: 'hidden' }}>{truncateOverview(movie.overview, 300)}</p>
+                                <div className="d-flex justify-content-around align-items-center">
                                     <button onClick={(e) => { props.deleteMovieProp(movie) }} type="button" className="btn btn-outline-danger">
                                         Delete
                                     </button>
-                                    <Link to={`edit/${movie.id}`} type="button" className="btn btn-md btn-outline-secondary">
+                                    <Link to={`edit/${movie.id}`} type="button" className="btn btn-md float-left btn-outline-primary">
                                         Edit
                                     </Link>
-                                    <h2>
+                                    <h2 className="float-right">
                                         <span className="badge bg-dark badge-secondary">
                                             {movie.rating}
                                         </span>

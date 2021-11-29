@@ -17,7 +17,11 @@ import {
         searchQuery: ""
     }
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.getMovies();
+    }
+
+    async getMovies() {
         const response = await axios.get('http://localhost:3002/movies');
         this.setState({ movies: response.data })
     }
@@ -41,10 +45,17 @@ import {
     }
    //ADD MOVIE
     addMovie = async (movie) => {
-        await axios.post(`http://localhost:3002/movies/`,movie)
+        await axios.post(`http://localhost:3002/movies/`,movie);
         this.setState(state => ({
             movies:state.movies.concat([movie])
-        }))
+        }));
+        this.getMovies();
+    }
+
+    //EDIT MOVIE
+    editMovie = async (id,updatedMovie) => {
+        await axios.put(`http://localhost:3002/movies/${id}`,updatedMovie);
+        this.getMovies();
     }
 
     render() {
@@ -81,6 +92,15 @@ import {
                                 <AddMovie 
                                 onAddMovie = {(movie) => {this.addMovie(movie);
                                     history.push("/");
+                                }
+                            } />
+                            )}>
+                            </Route>
+
+                            <Route path="/edit/:id"  render={(props) => (
+                                <EditMovie 
+                                {...props}
+                                onEditMovie = {(id,movie) => {this.editMovie(id,movie);
                                 }
                             } />
                             )}>
