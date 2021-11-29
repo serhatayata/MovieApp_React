@@ -1,8 +1,8 @@
 ### Overview
 
-ShoppingApp is an e-commerce website you can find products published in the website.
+MovieApp_React is a Web UI you can find movies provided by an API.
 
-![ShoppingAPP_IMAGE](https://r.resimlink.com/8XSMU.gif)
+![MovieApp_React_IMAGE](https://r.resimlink.com/8XSMU.gif)
 
 Things you can do in the website;
 
